@@ -11,7 +11,7 @@ jobs:
       - name: Show OS
         run: | # multiline command
           echo "This job is running on an Ubuntu runner"
-          echo "Runer OS: ${{RUNNER.OS}}"
+          echo "Runner OS: ${{RUNNER.OS}}"
   windows-echo:
     runs-on:
       windows-latest
@@ -20,4 +20,4 @@ jobs:
         shell: bash
         run: |
           echo "This job is running on a Windows runner"
-          echo "Runer OS: ${{RUNNER.OS}}"
+          echo "Runner OS: ${{RUNNER.OS}}"
