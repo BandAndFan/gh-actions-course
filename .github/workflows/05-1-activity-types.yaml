@@ -13,4 +13,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Temp Name
-        run: echo "Runing whenever a R is opened or synchronized AND the branch is main"
+        run: echo "Runing whenever a PR is opened or synchronized AND the branch is main"
