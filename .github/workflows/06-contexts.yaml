@@ -6,7 +6,7 @@ on:
 
 jobs:
   echo-data:
-    runs-on: ububtu-latest
+    runs-on: ubunbtu-latest
     steps:
       - name: Display Information
         run: |
