@@ -1,5 +1,5 @@
 name: 06 - Contexts
-run-name: 06 - Contexts | DEBUG - ${{ inputs.debug }}
+run-name: 06 - Contexts | DEBUG - ${{ inputs.debug }} | FOO - ${{ inputs.foo }}
 
 on: 
   push:
@@ -8,6 +8,9 @@ on:
       debug:
         type: boolean
         default: false
+      foo:
+        type: boolean
+        default: true
 
 jobs:
   echo-data:
