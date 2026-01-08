@@ -10,7 +10,7 @@ jobs:
       ubuntu-latest
     defaults:
       run:
-        working-directory: 04-using-actions/react-app # View React app in the folder 04-using-actions
+        working-directory: 04-using-actions/react-app # Set folder 04-using-actions for all the run commands (ex: npm ci, npm run tests)
     steps:
       # 0. Checkout e code from the repository
       - name: Checkout code
