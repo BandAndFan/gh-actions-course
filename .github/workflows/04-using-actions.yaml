@@ -23,7 +23,7 @@ jobs:
         with:
           node-version: '22.x'
       - name: Install Dependencies
-        run: npm ci
+        run: npm ci # It will install dependencies from defaults:run:working-directory
         # working-directory: 04-using-actions/react-app
       # 2. Execute automated tests
       - name: Run Unit Tests
