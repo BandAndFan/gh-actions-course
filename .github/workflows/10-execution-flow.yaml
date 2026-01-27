@@ -21,6 +21,9 @@ jobs:
           echo "Linting and Building Project"
   unit-tests:
     runs-on: ubuntu-latest
+    # This will execute all jobs downstream even if there is an error here
+    # it will also set the workflow to successful if there are no other errors
+    continue-on-error: true 
     steps:
       - name: Running Unit Tests
         run: echo "Running tests..."
