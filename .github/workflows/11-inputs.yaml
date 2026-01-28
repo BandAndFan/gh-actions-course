@@ -1,0 +1,26 @@
+name: 11 - Working with Inputs
+
+on:
+  workflow_dispatch: 
+    inputs:
+      dry-run:
+        type: boolean
+        description: Skip deployment and onlu print build output
+        default: false
+      target:
+        type: environment
+        description: Which evironment the workflow will target
+      tag:
+        type: choice
+        options:
+          - v1
+          - v2
+          - v3
+        default: v3
+        description: Release from which environment to build and deploy
+jobs:
+  echo:
+    runs-on: ubuntu-latest
+    steps:
+      - name: temp
+        run: echo "temp"
