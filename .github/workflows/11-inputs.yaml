@@ -9,6 +9,7 @@ on:
         default: false
       target:
         type: environment
+        required: true
         description: Which evironment the workflow will target
       tag:
         type: choice
@@ -19,8 +20,18 @@ on:
         default: v3
         description: Release from which environment to build and deploy
 jobs:
-  echo:
+  build:
     runs-on: ubuntu-latest
     steps:
-      - name: temp
-        run: echo "temp"
+      - name: Build
+      # Here we would upload the artifacts
+        run: echo "Building from tag ${{ inputs.tag }}"
+  deploy:
+    runs-on: ubuntu-latest
+    if: ${{ !inputs.dry-run }}
+    environment: ${{ inputs.target }}
+    needs: build
+    # Here we would download the build folder
+    steps:
+      - name: Deploy
+        run: echo "Deploying to ${{ inputs.target }}"
