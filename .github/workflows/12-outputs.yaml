@@ -21,7 +21,9 @@ jobs:
         run: echo "$GITHUB_OUTPUT"
       - name: Build
         id: build
-        run: echo "status=${{ inputs.build-status }}" >> "$GITHUB_OUTPUT"
+        run: |
+          echo "$GITHUB_OUTPUT" # steps do not share the same GITHUB_OUTPUT file
+          echo "status=${{ inputs.build-status }}" >> "$GITHUB_OUTPUT"
         # run: echo "<key>=<value>" >> "$GITHUB_OUTPUT"
   deploy:
     runs-on: ubuntu-latest
