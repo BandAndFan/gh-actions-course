@@ -17,6 +17,36 @@ on:
 
 
 jobs:
+  install-deps:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: 13-caching/react-app # Set folder 13-caching/react-app for all the run commands (ex: npm ci, npm run tests)
+    outputs:
+      deps-cache-key: ${{ steps.cache-key.outputs.CACHE_KEY }}
+    # 1. Checkout the code
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Setup Node
+        uses: actions/setup-node@v6
+        with:
+          node-version: ${{ inputs.node-version }}
+      # 2. Install dependencies
+      - name: Calculate cache key
+        id: cache-key
+        run: |
+          echo "CACHE_KEY=deps-node-modules-${{ hashFiles('13-caching/react-app/package-lock.json')}}" >> "$GITHUB_OUTPUT"
+      - name: Download cached dependencies
+        uses: actions/cache@v3
+        if: ${{ inputs.use-cache }}
+        id: cache
+        with:
+          path: 13-caching/react-app/node_modules
+          key: ${{ steps.cache-key.outputs.CACHE_KEY }}
+      - name: Install dependencies
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: npm ci
   build:
     runs-on: ubuntu-latest
     defaults:
